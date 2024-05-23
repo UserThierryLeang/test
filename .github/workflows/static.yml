@@ -32,17 +32,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Use Node.js 
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
         with:
           node-version: 20.x
           cache: 'npm'
       - run: npm install
       - run: npm run build
-      - name: Setup Pages
-        uses: actions/upload-pages-artifact@v3
-          # Upload entire repository
+      - uses: actions/configure-pages@v5
+        name: Setup Pages
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: 'dist' 
       - name: Deploy to GitHub Pages
